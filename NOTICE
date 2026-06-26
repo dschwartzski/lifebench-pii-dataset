@@ -1,0 +1,14 @@
+lifebench-pii-dataset
+Copyright 2026 dschwartzski
+
+This dataset is a derivative work built from LifeBench:
+  LifeBench: A Benchmark for Long-Horizon Multi-Source Memory
+  https://github.com/zhiyuan5986/LifeBench  (arXiv:2603.03781)
+  Licensed under the Apache License, Version 2.0.
+
+The prose evidence in `data_to_answer` is assembled from LifeBench's synthetic
+phone/agent-chat/note/calendar/photo/push artifacts (English `data_en` split).
+PII spans, redactions, and the QA pairings are produced in this repository.
+
+All personas and content in LifeBench are synthetic; no data corresponds to real
+individuals. Labels here are model-generated ("silver") — see README.md.

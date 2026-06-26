@@ -7,16 +7,17 @@ question with the assembled prose evidence needed to answer it, plus exact PII s
 in that prose and a redacted version.
 
 ## Files
-- `LifeBench_PII_dataset.jsonl.gz` — full dataset, gzip-compressed JSONL (1,952 records,
-  one JSON object per line). Read with: `gzip -dc LifeBench_PII_dataset.jsonl.gz`
-- `sample_25_records.jsonl` — first 25 records, uncompressed, for quick browsing on GitHub
+- `data/<user>.jsonl.gz` — full dataset, sharded by user (10 gzip-compressed JSONL files,
+  1,952 records total, one JSON object per line)
+- `sample_25_records.jsonl` — 25 records, uncompressed, for quick browsing on GitHub
 - Build scripts: `reassemble.py` (assemble + strip source noise), `post_all.py`
   (offsets + redaction), `merge_enrich.py` (union labels), `precision_clean.py`
   (deterministic FP cleanup)
 
 ```python
-import gzip, json
-data = [json.loads(l) for l in gzip.open("LifeBench_PII_dataset.jsonl.gz","rt")]
+import gzip, json, glob
+data = [json.loads(l) for f in glob.glob("data/*.jsonl.gz")
+        for l in gzip.open(f, "rt")]
 print(len(data), "records")  # 1952
 ```
 
